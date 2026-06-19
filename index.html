@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>SnapX Contest</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      color:#1f2d36;
+    }
+
+    .text-blue{color:#08b8ee}
+
+    .navbar-box{
+      height:70px;
+      background:#fff;
+      box-shadow:0 2px 8px #ddd;
+    }
+
+    .logo{
+      font-size:24px;
+      font-weight:700;
+      line-height:18px;
+    }
+
+    .logo span{color:#08b8ee}
+
+    .logo small{
+      font-size:11px;
+      color:#777;
+      font-weight:400;
+    }
+
+    .menu{
+      background:#08b8ee;
+      height:70px;
+    }
+
+    .menu a{
+      color:white;
+      font-size:12px;
+      font-weight:700;
+      margin:0 18px;
+      text-decoration:none;
+    }
+
+    .btn-outline-blue{
+      border:1px solid #08b8ee;
+      color:#08b8ee;
+      background:white;
+      border-radius:6px;
+      padding:9px 20px;
+      font-size:12px;
+      font-weight:700;
+    }
+
+    .btn-blue{
+      background:#08b8ee;
+      color:white;
+      border:0;
+      border-radius:6px;
+      padding:10px 22px;
+      font-size:12px;
+      font-weight:700;
+    }
+
+    .hero{
+      min-height:690px;
+      padding-top:180px;
+      color:white;
+      text-align:center;
+      background:
+        linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
+        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80")
+        center/cover no-repeat;
+    }
+
+    .hero h1{
+      max-width:850px;
+      margin:auto;
+      font-size:52px;
+      font-weight:800;
+    }
+
+    .hero p{
+      max-width:760px;
+      margin:45px auto 30px;
+      font-size:13px;
+      line-height:24px;
+    }
+
+    .hero .main-btn{
+      border:1px solid white;
+      color:white;
+      background:transparent;
+      border-radius:6px;
+      padding:15px 28px;
+      font-weight:700;
+      margin-right:15px;
+    }
+
+    .hero a{
+      color:white;
+      text-decoration:none;
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .top-cards{
+      margin-top:-105px;
+      position:relative;
+      z-index:2;
+    }
+
+    .photo-box,
+    .info-box{
+      height:245px;
+      border-radius:10px;
+      overflow:hidden;
+      box-shadow:0 6px 20px rgba(0,0,0,.12);
+      background:white;
+    }
+
+    .photo-box img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .info-box{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:35px;
+    }
+
+    .title small{
+      color:#08b8ee;
+      font-size:11px;
+      font-weight:700;
+    }
+
+    .title h2{
+      font-size:25px;
+      font-weight:800;
+    }
+
+    .cat-card,
+    .price-card{
+      border:1px solid #eee;
+      border-radius:10px;
+      background:white;
+      padding:25px;
+      height:100%;
+    }
+
+    .cat-card img{
+      width:100%;
+      height:155px;
+      object-fit:cover;
+      border-radius:8px;
+      margin:20px 0;
+    }
+
+    .icon-box{
+      width:50px;
+      height:50px;
+      background:#f5f5f5;
+      border-radius:8px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:22px;
+    }
+
+    .previous{
+      background:#eefbff;
+      padding:100px 0;
+      margin-top:90px;
+    }
+
+    .winner{
+      background:white;
+      border-radius:8px;
+      overflow:hidden;
+    }
+
+    .winner img{
+      width:100%;
+      height:250px;
+      object-fit:cover;
+    }
+
+    .winner-info{
+      padding:20px;
+      display:flex;
+      justify-content:space-between;
+    }
+
+    .winner-info small{color:#999}
+
+    .pricing{
+      padding:100px 0;
+    }
+
+    .price-card{
+      text-align:center;
+      padding:35px 30px;
+      box-shadow:0 5px 20px rgba(0,0,0,.04);
+    }
+
+    .price-card img{
+      height:140px;
+      margin-bottom:25px;
+    }
+
+    .price-card ul{
+      list-style:none;
+      padding:25px 0 0;
+      margin:25px 0;
+      border-top:1px solid #eee;
+    }
+
+    .price-card li{
+      color:#08b8ee;
+      font-size:13px;
+      margin-bottom:10px;
+    }
+
+    .price-card .off{
+      color:#aaa;
+      text-decoration:line-through;
+    }
+
+    .price{
+      color:#08b8ee;
+      font-size:28px;
+      font-weight:800;
+      margin-bottom:22px;
+    }
+
+    footer{
+      background:#08b8ee;
+      color:white;
+      text-align:center;
+      padding:25px;
+      font-size:12px;
+    }
+
+    @media(max-width:768px){
+      .menu{display:none!important}
+      .hero h1{font-size:34px}
+      .top-cards{margin-top:40px}
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="navbar-box">
+  <div class="container-fluid h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-md-3 text-center">
+        <div class="logo">Snap<span>X</span><br><small>Photography Contest</small></div>
+      </div>
+
+      <nav class="col-md-6 menu d-flex align-items-center justify-content-center">
+        <a href="#">HOME</a>
+        <a href="#">PHOTOS & VIDEOS</a>
+        <a href="#">CATEGORIES</a>
+        <a href="#">USERS</a>
+      </nav>
+
+      <div class="col-md-3 text-center">
+        <button class="btn-outline-blue">Sign In/Up</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1>Enter a world of <span class="text-blue">Photos</span> & Amazing <span class="text-blue">Awards</span></h1>
+
+    <p>
+      SnapX Photography is a professional website template with different HTML pages
+      for maximum customizations. It is free for commercial usage.
+    </p>
+
+    <button class="main-btn">Explore SnapX Contest</button>
+    <a href="#">▶ Watch Our Video Now</a>
+  </div>
+</section>
+
+<section class="top-cards">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="photo-box">
+          <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=600&q=80">
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-box">
+          <div>
+            <h5 class="text-blue fw-bold">Walk In The Nature ★★★</h5>
+            <p>Contest Winner: Thomas Eddy</p>
+            <p>Contest Author: Anthony Sof</p>
+            <p>Awards: $8,400 + Canon EOS R1</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="photo-box">
+          <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=600&q=80">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container mt-5 pt-5">
+  <div class="d-flex justify-content-between align-items-center mb-5">
+    <div class="title">
+      <small>OUR CATEGORIES</small>
+      <h2>Check Out <span class="text-blue">Popular</span> Contest Categories</h2>
+    </div>
+    <button class="btn-blue">Discover All Categories</button>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-md-3">
+      <div class="cat-card">
+        <div class="d-flex gap-3 align-items-center">
+          <div class="icon-box">🖼️</div>
+          <div><h6>Nature Pic Contest</h6><small><span class="text-blue">126</span> Available Contests</small></div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=500&q=80">
+        <button class="btn-outline-blue w-100">Browse Nature Pic Contests</button>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="cat-card">
+        <div class="d-flex gap-3 align-items-center">
+          <div class="icon-box">🚶</div>
+          <div><h6>Random Pic Contest</h6><small><span class="text-blue">116</span> Available Contests</small></div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=500&q=80">
+        <button class="btn-outline-blue w-100">Browse Random Pic Contests</button>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="cat-card">
+        <div class="d-flex gap-3 align-items-center">
+          <div class="icon-box">👤</div>
+          <div><h6>Portrait Pic Contest</h6><small><span class="text-blue">164</span> Available Contests</small></div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=500&q=80">
+        <button class="btn-outline-blue w-100">Browse Portrait Pic Contests</button>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="cat-card">
+        <div class="d-flex gap-3 align-items-center">
+          <div class="icon-box">🚀</div>
+          <div><h6>Space Pic Contest</h6><small><span class="text-blue">135</span> Available Contests</small></div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=500&q=80">
+        <button class="btn-outline-blue w-100">Browse Space Pic Contests</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="previous text-center">
+  <div class="container">
+    <div class="title mb-5">
+      <small>CLOSED PHOTOGRAPHY CONTESTS</small>
+      <h2><span class="text-blue">Previous Contests</span> With Handpicked Winners</h2>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="winner">
+          <img src="https://images.unsplash.com/photo-1517824806704-9040b037703b?auto=format&fit=crop&w=600&q=80">
+          <div class="winner-info">
+            <div><b>96 Participants</b><br><small>Number Of Artists</small></div>
+            <div><b>410 Pictures</b><br><small>Submitted Pics</small></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="winner">
+          <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=80">
+          <div class="winner-info">
+            <div><b>74 Participants</b><br><small>Number Of Artists</small></div>
+            <div><b>284 Pictures</b><br><small>Submitted Pics</small></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="winner">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80">
+          <div class="winner-info">
+            <div><b>88 Participants</b><br><small>Number Of Artists</small></div>
+            <div><b>320 Pictures</b><br><small>Submitted Pics</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-outline-blue mt-5">Browse Open Contests</button>
+  </div>
+</section>
+
+<section class="pricing">
+  <div class="container text-center">
+    <div class="title mb-5">
+      <small>OUR PRICING</small>
+      <h2>Photography <span class="text-blue">Contest Plans</span> And Price <span class="text-blue">Awards</span></h2>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="price-card">
+          <img src="https://templatemo.com/templates/templatemo_576_snapx_photography/assets/images/pricing-01.jpg">
+          <h5>Basic Plan</h5>
+          <ul>
+            <li>Lorem Ipsum Dolores Sonte</li>
+            <li>Songe Lorem Ipsum Dol</li>
+            <li>Matrios Venga Heptuss</li>
+            <li class="off">Denim Sriracha Kogi</li>
+          </ul>
+          <div class="price">$25 USD</div>
+          <button class="btn-outline-blue">Choose This Plan</button>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="price-card">
+          <img src="https://templatemo.com/templates/templatemo_576_snapx_photography/assets/images/pricing-02.jpg">
+          <h5>Standard Plan</h5>
+          <ul>
+            <li>Lorem Ipsum Dolores Sonte</li>
+            <li>Songe Lorem Ipsum Dol</li>
+            <li>Matrios Venga Heptuss</li>
+            <li class="off">Digital Photography Awards</li>
+          </ul>
+          <div class="price">$45 USD</div>
+          <button class="btn-outline-blue">Choose This Plan</button>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="price-card">
+          <img src="https://templatemo.com/templates/templatemo_576_snapx_photography/assets/images/pricing-03.jpg">
+          <h5>Advanced Plan</h5>
+          <ul>
+            <li>Lorem Ipsum Dolores Sonte</li>
+            <li>Songe Lorem Ipsum Dol</li>
+            <li>Matrios Venga Heptuss</li>
+            <li>Digital Photography Awards</li>
+          </ul>
+          <div class="price">$85 USD</div>
+          <button class="btn-outline-blue">Choose This Plan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Copyright © 2022 SnapX Photo Contest Co., Ltd. All rights reserved.
+</footer>
+
+</body>
+</html>
